@@ -40,7 +40,7 @@ namespace Mens.Aut.Correo
             this.btnEnviar.TabIndex = 0;
             this.btnEnviar.Text = "ENVIAR";
             this.btnEnviar.UseVisualStyleBackColor = true;
-            this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
+            this.btnEnviar.Click += new System.EventHandler(this.BtnEnviar_Click);
             // 
             // Form1
             // 

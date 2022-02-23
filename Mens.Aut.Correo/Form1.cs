@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mens.Aut.Correo.Modelo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,7 +24,7 @@ namespace Mens.Aut.Correo
             try
             {
                 System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
-                msg.To.Add("juanra@gmail.com");
+                msg.To.Add("israelmesias89@gmail.com");
                 msg.Subject = ("Bienvenid@ Estimad@ ");
                 msg.SubjectEncoding = System.Text.Encoding.UTF8;
                 msg.IsBodyHtml = true;
@@ -37,7 +38,6 @@ namespace Mens.Aut.Correo
 
                 Beneficios beneficiosAct = null;
 
-
                 string Idbeneficio = "3";
                 using (DP_Beneficios dP_Beneficios = new DP_Beneficios())
                 {
@@ -48,7 +48,7 @@ namespace Mens.Aut.Correo
 
                 //  string plnatilla = Beneficios.
 
-                string Mail = "juansema@gmail.com";
+                string Mail = "israelmesias89@gmail.com";
 
                 string Pin = "11125";
 
@@ -89,7 +89,7 @@ namespace Mens.Aut.Correo
             }
         }
 
-        private void btnEnviar_Click(object sender, EventArgs e)
+        private void BtnEnviar_Click(object sender, EventArgs e)
         {
             SendEmail();
         }
