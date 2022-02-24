@@ -1,4 +1,5 @@
-﻿using Mens.Aut.Correo.Modelo;
+﻿using Mens.Aut.Correo.Data;
+using Mens.Aut.Correo.Modelo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,12 +20,12 @@ namespace Mens.Aut.Correo
             InitializeComponent();
         }
 
-        public static void SendEmail()
+        public static void SendEmail(string Mail)
         {
             try
             {
                 System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
-                msg.To.Add("israelmesias89@gmail.com");
+                msg.To.Add("" + Mail + "");
                 msg.Subject = ("Bienvenid@ Estimad@ ");
                 msg.SubjectEncoding = System.Text.Encoding.UTF8;
                 msg.IsBodyHtml = true;
@@ -38,7 +39,7 @@ namespace Mens.Aut.Correo
 
                 Beneficios beneficiosAct = null;
 
-                string Idbeneficio = "3";
+                string Idbeneficio = "1";
                 using (DP_Beneficios dP_Beneficios = new DP_Beneficios())
                 {
                     beneficiosAct = dP_Beneficios.BuscarBeneficioId(Idbeneficio);
@@ -48,14 +49,14 @@ namespace Mens.Aut.Correo
 
                 //  string plnatilla = Beneficios.
 
-                string Mail = "israelmesias89@gmail.com";
+                //string Mail = "israel_pazmi@hotmail.com";
 
                 string Pin = "11125";
 
 
                 //  string pathToFiles = Server.MapPath("/UploadedFiles");
 
-                string appPath = Path.GetFullPath("").Replace("", "");
+                string appPath = Path.GetFullPath("~").Replace("~", "");
                 body = File.ReadAllText(appPath + "/Plantilla/" + Plantilla);
 
                 //using (StreamReader reader = new StreamReader(Server.MapPath("~/Plantillas/" + Plantilla + "")))
@@ -73,7 +74,7 @@ namespace Mens.Aut.Correo
                 msg.From = new System.Net.Mail.MailAddress("" + Mail + "");
 
                 System.Net.Mail.SmtpClient cliente = new System.Net.Mail.SmtpClient();
-                cliente.Credentials = new System.Net.NetworkCredential("jairo90", "D@v1");
+                cliente.Credentials = new System.Net.NetworkCredential("israelmesias89@gmail.com", "");
 
                 cliente.Port = 587;
                 cliente.EnableSsl = true;
@@ -91,7 +92,16 @@ namespace Mens.Aut.Correo
 
         private void BtnEnviar_Click(object sender, EventArgs e)
         {
-            SendEmail();
+            DP_Clientes modelo = new DP_Clientes();
+            List<Clientes> contratos = modelo.BuscarContratosPorIdCliente();
+
+            foreach (Clientes clientes in contratos)
+            {
+
+                string envio = clientes.Correo;
+                SendEmail(envio);
+            }
+
         }
     }
 }
